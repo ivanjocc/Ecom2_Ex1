@@ -18,35 +18,43 @@ if (!$book) {
     exit;
 }
 
+// var_dump($book);
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Edit Book</title>
+    <link rel="stylesheet" href="../css/edit_book.css">
 </head>
+
 <body>
 
-<h1>Edit Book</h1>
+    <h1>Edit Book</h1>
 
 
-<form action="../process/process_edit_book.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
-    <div>
-        <label for="titre">Titre:</label>
-        <input type="text" id="titre" name="titre" value="<?php echo htmlspecialchars($book['titre']); ?>" required>
-    </div>
-    <div>
-        <label for="auteur">Auteur:</label>
-        <input type="text" id="auteur" name="auteur" value="<?php echo htmlspecialchars($book['auteur']); ?>" required>
-    </div>
-    <div>
-        <label for="annee">Annee de publication:</label>
-        <input type="number" id="annee" name="annee" value="<?php echo $book['annee']; ?>" required>
-    </div>
-    <button type="submit">Update Book</button>
-</form>
+    <form action="../process/process_edit_book.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $book->getId(); ?>">
+        <div>
+            <label for="titre">Titre:</label>
+            <input type="text" id="titre" name="titre" value="<?php echo htmlspecialchars($book->getTitre()); ?>" required>
+        </div>
+        <div>
+            <label for="auteur">Auteur:</label>
+            <input type="text" id="auteur" name="auteur" value="<?php echo htmlspecialchars($book->getAuteur()); ?>" required>
+        </div>
+        <div>
+            <label for="annee">Annee de publication:</label>
+            <input type="number" id="annee" name="annee" value="<?php echo $book->getAnnee(); ?>" required>
+        </div>
+        <button type="submit">Update Book</button>
+        <a href="../index.php">Go to Index</a>
+    </form>
+
 
 </body>
+
 </html>
