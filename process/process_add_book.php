@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "Libro añadido con éxito.";
     } else {
-        echo "Por favor, rellena todos los campos del formulario.";
+        echo "Please fill all the fields in the form";
     }
 } else {
     header('Location: ajouter_livre.html');
