@@ -1,11 +1,8 @@
 h1 {
 	font-size: 40px;
-	/* color: white; */
 }
 
 .books {
-    /* display: flex;
-    flex-wrap: nowrap; */
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -17,8 +14,6 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    /* overflow: hidden; */
-    /* width: 200px; */
     text-align: center;
 }
 
@@ -32,12 +27,10 @@ h1 {
 .book h2 {
     font-size: 20px;
     margin: 10px 0;
-	/* color: white; */
 }
 
 .book p {
     font-size: 16px;
-    /* color: white; */
     margin: 5px 0 10px;
 }
 
