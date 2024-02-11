@@ -3,34 +3,52 @@ require 'config/database.php';
 require 'class/Livre.class.php';
 require 'class/RequestSql.php';
 
-// Crear una instancia de RequestSql
 $requestSql = new RequestSql($conn);
 
-// Obtener todos los libros
-$libros = $requestSql->getBooks();
+$books = $requestSql->getBooks();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Book List</title>
-	<link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
-<h1>Book List</h1>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="./forms/ajouter_livre.html">Add a book</a>
+                </li>
+            </ul>
+        </nav>
 
-<div class="books">
-    <?php foreach ($libros as $libro): ?>
-        <div class="book">
-            <img src="img/gato.jpg" alt="Image par default" style="width:300px;height:200px;">
-            <h2><?php echo htmlspecialchars($libro->getTitre(), ENT_QUOTES, 'UTF-8'); ?></h2>
-            <p>Auteur: <?php echo htmlspecialchars($libro->getAuteur(), ENT_QUOTES, 'UTF-8'); ?></p>
-            <p>Annee de publication: <?php echo htmlspecialchars($libro->getAnnee(), ENT_QUOTES, 'UTF-8'); ?></p>
-        </div>
-    <?php endforeach; ?>
-</div>
+    </header>
+
+    <h1>Book List</h1>
+
+    <div class="books">
+        <?php foreach ($books as $book) : ?>
+            <div class="book">
+                <img src="img/gato.jpg" alt="Image par default" style="width:300px;height:200px;">
+                <h2><?php echo htmlspecialchars($book->getTitre()); ?></h2>
+                <p>Auteur: <?php echo htmlspecialchars($book->getAuteur()); ?></p>
+                <p>Annee de publication: <?php echo htmlspecialchars($book->getAnnee()); ?></p>
+                <a href="forms/edit_book.php?id=<?php echo $book->getId(); ?>">Edit</a>
+
+                <form action="forms/supprimer_livre.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $book->getId(); ?>">
+                    <button type="submit" onclick="return confirm('¿Are you sure?');">Delete</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
 
 </body>
+
 </html>

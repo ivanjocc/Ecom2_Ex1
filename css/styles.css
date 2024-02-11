@@ -1,10 +1,10 @@
 body {
-	background-color: #26134f;
+	/* background-color: #5a39a2; */
 }
 
 h1 {
 	font-size: 40px;
-	color: white;
+	/* color: white; */
 }
 
 .books {
@@ -30,16 +30,17 @@ h1 {
     width: 100%;
     height: auto;
     border-bottom: 1px solid #ddd;
+    border-radius: 20px;
 }
 
 .book h2 {
     font-size: 20px;
     margin: 10px 0;
-	color: white;
+	/* color: white; */
 }
 
 .book p {
     font-size: 16px;
-    color: white;
+    /* color: white; */
     margin: 5px 0 10px;
 }

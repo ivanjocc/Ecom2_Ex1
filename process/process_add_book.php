@@ -17,12 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requestSql = new RequestSql($conn);
         $requestSql->addBook($livre);
 
-        echo "Libro añadido con éxito.";
+        // echo "Done";
+        header('Location: ../index.php');
     } else {
         echo "Please fill all the fields in the form";
     }
 } else {
-    header('Location: ajouter_livre.html');
+    header('Location: ../forms/ajouter_livre.html');
 }
 
 ?>
