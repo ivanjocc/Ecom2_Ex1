@@ -17,39 +17,42 @@ class RequestSql {
 		$stmt->close();
 	}
 	
-
 	public function getBooks() {
-		$result = $this->conn->query('select * from livres');
+		$result = $this->conn->query('SELECT * FROM livres');
 		$books = [];
 		while ($row = $result->fetch_assoc()) {
-			$books[] = $row;
+			$books[] = new Livre($row['titre'], $row['auteur'], $row['annee'], $row['id']);
 		}
 		return $books;
-	}
+	}	
 
 	public function getBookById($id){
-		$stmt = $this->conn->prepare('select * from livres where id = ?');
+		$stmt = $this->conn->prepare('SELECT * FROM livres WHERE id = ?');
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		$book = $result->fetch_assoc();
+		if ($book = $result->fetch_assoc()) {
+			$stmt->close();
+			return new Livre($book['titre'], $book['auteur'], $book['annee'], $book['id']);
+		}
 		$stmt->close();
-		return $book;
-	}
+		return null;
+	}	
 
-	public function updateBook($id, $titre, $auteur, $annee) {
-		$stmt = $this->conn->prepare('update livres set titre = ?, auteur = ?, annee = ? where id = ?');
-		$stmt->bind_param('ssii', $titre, $auteur, $annee, $id);
+	public function updateBook(Livre $livre) {
+		$stmt = $this->conn->prepare('UPDATE livres SET titre = ?, auteur = ?, annee = ? WHERE id = ?');
+		$stmt->bind_param('ssii', $livre->getTitre(), $livre->getAuteur(), $livre->getAnnee(), $livre->getId());
 		$stmt->execute();
 		$stmt->close();
 	}
 
-	public function deleteBook($id) {
-		$stmt = $this->conn->prepare('delete from livres where id = ?');
-		$stmt->bind_param('i', $id);
+	public function deleteBook(Livre $livre) {
+		$stmt = $this->conn->prepare('DELETE FROM livres WHERE id = ?');
+		$stmt->bind_param('i', $livre->getId());
 		$stmt->execute();
 		$stmt->close();
 	}
+	
 }
 
 ?>
