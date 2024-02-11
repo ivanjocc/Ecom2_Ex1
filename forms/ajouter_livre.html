@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Add Book</title>
+</head>
+
+<body>
+	<h2>Add Book</h2>
+
+	<form action="../process/process_add_book.php" method="post">
+		<div>
+			<label for="titre">Titre:</label>
+			<input type="text" id="titre" name="titre" required />
+		</div>
+		<div>
+			<label for="auteur">Auteur:</label>
+			<input type="text" id="auteur" name="auteur" required />
+		</div>
+		<div>
+			<label for="annee">Annee:</label>
+			<input type="number" id="annee" name="annee" required min="1" maxlength="4" />
+		</div>
+		<div>
+			<button type="submit">Ajouter Livre</button>
+		</div>
+	</form>
+</body>
+
+</html>
