@@ -53,6 +53,21 @@ class RequestSql {
 		$stmt->close();
 	}
 	
+	public function searchBooksByYear($year) {
+		$stmt = $this->conn->prepare('SELECT * FROM livres WHERE annee = ?');
+		$stmt->bind_param('i', $year);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		
+		$books = [];
+		while ($row = $result->fetch_assoc()) {
+			$books[] = new Livre($row['titre'], $row['auteur'], $row['annee'], $row['id']);
+		}
+		$stmt->close();
+		return $books;
+	}
+	
+	
 }
 
 ?>

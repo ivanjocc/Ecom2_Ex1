@@ -49,6 +49,15 @@ $books = $requestSql->getBooks();
         <?php endforeach; ?>
     </div>
 
+    <h2>Search a book</h2>
+
+    <form action="forms/search_books.php" method="get">
+        <label for="searchYear">Select the year</label>
+        <input type="number" id="searchYear" name="year" required>
+        <button type="submit">Search</button>
+    </form>
+
+
 </body>
 
 </html>
